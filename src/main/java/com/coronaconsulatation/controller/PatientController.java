@@ -30,10 +30,10 @@ public class PatientController {
 	
 	@PostMapping("/")
 	public ResponseEntity<String> createPatient(@RequestBody Patient patient){
+		
 		patientserviceimpl.createPatient(patient);
 		return new ResponseEntity<>("Patient Created!!",HttpStatus.OK);
-		
-	}
+		}
 	
 	@PutMapping("/updatePatient/updateAllFields/{id}/")
 	public ResponseEntity<String> updatePatient(@PathVariable int patientid, @RequestBody Patient patient){
@@ -76,29 +76,29 @@ public class PatientController {
 		return new ResponseEntity<>("No such id Exists!!", HttpStatus.NOT_FOUND);
 	}
 	
-	@DeleteMapping("/{id}/")
-	public ResponseEntity<String> deletePatient(@PathVariable int patientid){
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<String> deletePatient(@PathVariable("id") int patientid){
 		if(patientserviceimpl.deletePatient(patientid)) {
 			return new ResponseEntity<String>("Patient deleted !!", HttpStatus.OK);
 		}
 		return new ResponseEntity<>("No such id Exists!!", HttpStatus.NOT_FOUND);
 	}
 	
-	@GetMapping("/{id}/")
-	public ResponseEntity<Patient> getPatient(@PathVariable int patientid){
-		Patient pat =patientserviceimpl.getPatient(patientid);
-		if(pat!=null) {
-			return new ResponseEntity<>(pat, HttpStatus.NOT_FOUND);
+	@GetMapping("/get/{id}")
+	public ResponseEntity<?> getPatient(@PathVariable("id") int patientid){
+		Patient pat =patientserviceimpl.findById(patientid);
+		if(pat==null) {
+			return new ResponseEntity<String>("Patient Not Found", HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Patient>(pat, HttpStatus.OK);
 	}
 	
 	@GetMapping("/allPatients")
 	public ResponseEntity<List<Patient>> getAllPatients(){
 		List<Patient> pat = patientserviceimpl.getAllPatients();
 		if(pat!=null) {
-			return new ResponseEntity<>(pat, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(pat, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}

@@ -6,6 +6,8 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.coronaconsulatation.Exception.IdNotFoundException;
+import com.coronaconsulatation.Exception.PatientException;
 import com.coronaconsulatation.entities.Services;
 import com.coronaconsulatation.repository.ServiceRepository;
 
@@ -17,6 +19,9 @@ public class ServiceMasterImpl implements IServiceMaster{
 
 	@Override
 	public boolean createService(Services service) {
+		if(service.getAdditionalServices()==null){
+			throw new ServiceException("Given Service Object is Null");
+		}
 		if(service!=null)
 		{
 			serviceRepository.save(service);
@@ -28,7 +33,10 @@ public class ServiceMasterImpl implements IServiceMaster{
 	@Override
 	public boolean updateService(int serviceid,Services service) {
 		Services ser = serviceRepository.findById(serviceid).get();
-		if (ser!=null) {
+		if(ser==null) {
+			throw new IdNotFoundException("Given Id is Not found, Please Enter valid Id");
+		}
+		else if (ser!=null) {
 			serviceRepository.save(ser);
 			return true;	
 		}
@@ -39,7 +47,10 @@ public class ServiceMasterImpl implements IServiceMaster{
 	public boolean deleteService(int serviceid) {
 		
 		Services ser =serviceRepository.findById(serviceid).get();
-		if(ser!=null) {
+		if(ser==null) {
+			throw new IdNotFoundException("Given Id is Not found, Please Enter valid Id");
+		}
+		else if(ser!=null) {
 			serviceRepository.deleteById(serviceid);;
 			return true;
 		}
@@ -49,7 +60,10 @@ public class ServiceMasterImpl implements IServiceMaster{
 	@Override
 	public Services getService(int serviceid) {
 		Services ser= serviceRepository.findById(serviceid).get();
-		if(ser!=null) {
+		if(ser==null) {
+			throw new IdNotFoundException("Given Id is Not found, Please Enter valid Id");
+		}
+		else if(ser!=null) {
 			return ser;
 		}
 		return null;
@@ -68,8 +82,11 @@ public class ServiceMasterImpl implements IServiceMaster{
 	@Override
 	public boolean updateAdditionalServiceName(int serviceid, String additionalServiceName) {
 		Services ser = serviceRepository.findById(serviceid).get();
+		if(ser==null) {
+			throw new IdNotFoundException("Given Id is Not found, Please Enter valid Id");
+		}
 
-		if (ser!=null) {
+		else if (ser!=null) {
 			ser.setAdditionalServices(additionalServiceName);
 
 			serviceRepository.save(ser);

@@ -15,7 +15,7 @@ public interface IPatientService {
 	public boolean createPatient(Patient patient);
 	public boolean updatePatient(int id,Patient patient);
 	public boolean deletePatient(int id);
-	public Patient getPatient(int id);
+	public Patient findById(int id);
 	public List<Patient> getAllPatients();
 	public boolean updateName(int id,String name);
 	public boolean updateMobile(int id,String Mobile);

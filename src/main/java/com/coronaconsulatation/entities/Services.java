@@ -16,7 +16,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import lombok.Data;
 
 @Entity
- @Data
+@Data
 public class Services {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
