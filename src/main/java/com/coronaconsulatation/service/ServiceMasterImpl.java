@@ -71,7 +71,6 @@ public class ServiceMasterImpl implements IServiceMaster{
 
 	@Override
 	public List<Services> getAllServices() {
-		// TODO Auto-generated method stub
 		   List<Services> service= serviceRepository.findAll();
 		   if(service!=null) {
 			   return service;

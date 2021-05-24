@@ -36,7 +36,7 @@ public class PatientController {
 		}
 	
 	@PutMapping("/updatePatient/updateAllFields/{id}/")
-	public ResponseEntity<String> updatePatient(@PathVariable int patientid, @RequestBody Patient patient){
+	public ResponseEntity<String> updatePatient(@PathVariable("id") int patientid, @RequestBody Patient patient){
 		if(patientserviceimpl.updatePatient(patientid, patient)) {
 			return new ResponseEntity<>("Patient Updated!!", HttpStatus.OK);
 		}
@@ -44,7 +44,7 @@ public class PatientController {
 	}
 	
 	@PutMapping("/updatePatient/updateName/{id}/")
-	public ResponseEntity<String> updatePatientName(@PathVariable int patientid, @RequestBody String name){
+	public ResponseEntity<String> updatePatientName(@PathVariable("id") int patientid, @RequestBody String name){
 		if(patientserviceimpl.updateName(patientid, name)) {
 			return new ResponseEntity<>("Name Updated!!", HttpStatus.OK);
 		}
@@ -52,7 +52,7 @@ public class PatientController {
 	}
 	
 	@PutMapping("/updatePatient/updateEmail/{id}/")
-	public ResponseEntity<String> updatePatientEmail(@PathVariable int patientid, @RequestBody String email){
+	public ResponseEntity<String> updatePatientEmail(@PathVariable("id") int patientid, @RequestBody String email){
 		if(patientserviceimpl.updateEmail(patientid, email)) {
 			return new ResponseEntity<>("Email Updated!!", HttpStatus.OK);
 		}
@@ -60,7 +60,7 @@ public class PatientController {
 	}
 	
 	@PutMapping("/updatePatient/updateMobile/{id}/")
-	public ResponseEntity<String> updatePatientMobile(@PathVariable int patientid, @RequestBody String mobile){
+	public ResponseEntity<String> updatePatientMobile(@PathVariable("id") int patientid, @RequestBody String mobile){
 		if(patientserviceimpl.updateMobile(patientid, mobile)) {
 			return new ResponseEntity<>("Mobile Updated!!", HttpStatus.OK);
 		}
@@ -69,7 +69,7 @@ public class PatientController {
 	
 	
 	@PutMapping("/updatePatient/updateLocation/{id}/")
-	public ResponseEntity<String> updateDoctorLocation(@PathVariable int patientid, @RequestBody String location){
+	public ResponseEntity<String> updateDoctorLocation(@PathVariable("id") int patientid, @RequestBody String location){
 		if(patientserviceimpl.updateLocation(patientid, location)) {
 			return new ResponseEntity<>("Location Updated!!", HttpStatus.OK);
 		}

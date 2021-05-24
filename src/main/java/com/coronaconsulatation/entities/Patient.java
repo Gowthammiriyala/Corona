@@ -19,18 +19,22 @@ public class Patient {
 	private String email;
 	private String gender;
 	private String mobile;
-	private String Location;
+	private String location;
 	
 	@OneToOne
 	@JoinColumn(name = "patientReportId", referencedColumnName = "patientReportId")
 	private PatientReport patientReport;
 	
-  /*@OneToOne
-   * @JoinColumn(name = "billingId", referencedColumnName = "billing_Id"
-   * private Billing billing;
-   * 
-   * @OneToOne
-   * @JoinColumn(name = "feedbackId", referencedColumnName = "feedback_Id"
-   * private Feedback feedback;
-   */
+	 @OneToOne
+	 @JoinColumn(name = "doctorId", referencedColumnName = "D_Id")
+	 private Doctor doctor;
+	
+     @OneToOne
+     @JoinColumn(name = "billingId", referencedColumnName = "B_Id")
+     private Billing billing;
+    
+     @OneToOne
+     @JoinColumn(name = "feedbackId", referencedColumnName = "F_Id")
+     private Feedback feedback;
+   
 }

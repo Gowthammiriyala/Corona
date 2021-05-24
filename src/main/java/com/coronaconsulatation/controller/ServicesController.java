@@ -62,7 +62,7 @@ public class ServicesController {
 	}
 	
 	@GetMapping("/{id}/")
-	public ResponseEntity<Services> getService(@PathVariable int serviceid){
+	public ResponseEntity<Services> getService(@PathVariable("serviceid") int serviceid){
 		Services ser =serviceMasterImpl.getService(serviceid);
 		if(ser!=null) {
 			return new ResponseEntity<>(ser, HttpStatus.NOT_FOUND);
