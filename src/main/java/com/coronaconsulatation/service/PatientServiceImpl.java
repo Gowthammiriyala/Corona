@@ -25,7 +25,7 @@ public class PatientServiceImpl implements IPatientService{
 	@Override
 	public boolean createPatient(Patient patient) {
 		// TODO Auto-generated method stub
-		if(patient.getName()==null || patient.getEmail()==null){
+		if(patient.getFirstName()==null || patient.getEmail()==null){
 			throw new PatientException("Given Patient Object is Null");
 		}
 		if(patient!=null)
@@ -110,7 +110,7 @@ public class PatientServiceImpl implements IPatientService{
 		}
 
 		else if (pat!=null) {
-			pat.setName(name);
+			pat.setFirstName(name);
 
 			patientrepository.save(pat);
 			return true;

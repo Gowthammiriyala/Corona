@@ -36,7 +36,7 @@ class PatientControllerTest {
 	void createPatientTest() throws Exception {
 		
 		Patient patient = new Patient();
-		patient.setName("Gowtham");
+		patient.setFirstName("Gowtham");
 		patient.setEmail("GowthamMiriyala@gmail.com");
 		
 		Mockito.when(patientServiceImpl.createPatient(Mockito.any())).thenReturn(true);
@@ -52,7 +52,7 @@ class PatientControllerTest {
 	void findPatientTest() throws Exception {
 		
 		Patient patient = new Patient();
-		patient.setName("Gowtham");
+		patient.setFirstName("Gowtham");
 		patient.setLocation("Bhimavaram");
 		patient.setMobile("123445");
 		
